@@ -12,6 +12,16 @@ import { computeAutoFit } from "./autoFit.js";
 const BASE = import.meta.env.BASE_URL;
 
 // Placement is automatic (autoFit.js); these are the user's fine-tune offsets on top.
+// Sun-lens filter colour: keeps the tint's hue but sets the visible-light
+// transmission to ~22% (ISO 12312-1 category 2-3), so eyes stay faintly visible.
+const LENS_VLT = 0.22;
+function lensFilter(hex) {
+  const c = new THREE.Color(hex); // linear
+  const lum = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b || 1e-3;
+  const k = LENS_VLT / lum;
+  return c.setRGB(Math.min(1, c.r * k), Math.min(1, c.g * k), Math.min(1, c.b * k));
+}
+
 export const DEFAULT_FIT = {
   offsetY: 0, // mm: + raises the frame
   offsetZ: 0, // mm: + moves the frame further from the face
@@ -233,8 +243,7 @@ export class TryOnRenderer {
     }
     if (f.kind === "clear") {
       return new THREE.MeshPhysicalMaterial({ ...p, color: f.color, transmission: f.transmission,
-        thickness: 0.003, ior: 1.49, clearcoat: 1, clearcoatRoughness: 0.05,
-        attenuationColor: new THREE.Color(f.color), attenuationDistance: 0.01 });
+        thickness: 0.003, ior: 1.49, clearcoat: 1, clearcoatRoughness: 0.05 });
     }
     if (f.kind === "tortoise") {
       return new THREE.MeshPhysicalMaterial({ ...p, color: 0xffffff, map: this._texture(f.texture),
@@ -255,10 +264,13 @@ export class TryOnRenderer {
   applyLens(key, finishes) {
     const l = finishes.lenses[key] || finishes.lenses.clear;
     const tinted = (l.transmission ?? 1) < 1;
+    // Tint is a colour filter on the transmitted light, not volume attenuation:
+    // the scene is in pixels with the frame scaled by px/m, and three.js scales
+    // the attenuation path by that, which turned thin tinted lenses fully black.
     this._replace("lens", () => new THREE.MeshPhysicalMaterial({
-      color: l.color, roughness: 0.02, metalness: 0, transmission: 1, ior: 1.5,
-      thickness: 0.0015, specularIntensity: 1, envMapIntensity: tinted ? 1.1 : 0.55,
-      attenuationColor: new THREE.Color(l.color), attenuationDistance: tinted ? 0.0012 : 1,
+      color: tinted ? lensFilter(l.color) : l.color, roughness: 0.02, metalness: 0,
+      transmission: 1, ior: 1.5, thickness: 0.0015, specularIntensity: 1,
+      envMapIntensity: tinted ? 0.9 : 0.55,
       iridescence: key === "blue-shield" ? 0.45 : key === "clear" ? 0.15 : 0,
       iridescenceIOR: 1.3, iridescenceThicknessRange: [180, 420],
       transparent: false,
