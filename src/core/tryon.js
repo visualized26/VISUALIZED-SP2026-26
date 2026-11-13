@@ -7,12 +7,14 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
 import { OneEuro, OneEuroVec3, QuatFilter } from "./filters.js";
 import { FaceMetrics, computePose, toPixels } from "./facePose.js";
 import { faceTriangles } from "./tracker.js";
+import { computeAutoFit } from "./autoFit.js";
 
 const BASE = import.meta.env.BASE_URL;
 
+// Placement is automatic (autoFit.js); these are the user's fine-tune offsets on top.
 export const DEFAULT_FIT = {
-  offsetY: -1.5, // mm: lens datum relative to pupils (negative = lower)
-  offsetZ: 11.0, // mm: frame back plane in front of the iris (vertex distance)
+  offsetY: 0, // mm: + raises the frame
+  offsetZ: 0, // mm: + moves the frame further from the face
   tilt: 8, // deg: pantoscopic tilt as worn
   scale: 1.0, // manual size correction
 };
@@ -102,11 +104,13 @@ export class TryOnRenderer {
     this.current = null;
 
     this.fit = { ...DEFAULT_FIT };
-    this.occluderInsetMM = 16; // how far behind the skin the face occluder sits
+    this.occluderInsetMM = 8; // face occluder sits behind the skin: it hides temples only
     this.metrics = new FaceMetrics();
     this.fPos = new OneEuroVec3({ minCutoff: 1.2, beta: 0.015 });
     this.fQuat = new QuatFilter({ minCutoff: 1.5, beta: 0.5 });
     this.fScale = new OneEuro({ minCutoff: 0.4, beta: 0.0 });
+    this.fOy = new OneEuro({ minCutoff: 0.3, beta: 0.0 });
+    this.fOz = new OneEuro({ minCutoff: 0.3, beta: 0.0 });
     this.P = [];
     this.lastPose = null;
     this.W = 1;
@@ -151,6 +155,8 @@ export class TryOnRenderer {
     this.fPos.reset();
     this.fQuat.reset();
     this.fScale.reset();
+    this.fOy.reset();
+    this.fOz.reset();
     this.metrics.reset();
     this.lastPose = null;
   }
@@ -176,7 +182,12 @@ export class TryOnRenderer {
         if (o.name.startsWith("Lens")) o.castShadow = false;
       });
       for (const t of Object.values(temples)) t.userData.rest = t.rotation.y;
-      rec = { root, slots, temples, entry };
+      const d = entry.dims_mm;
+      const anchor = root.getObjectByName("Anchor_Bridge");
+      const geom = { lensW: d.lens_width, lensH: d.lens_height, bridge: d.bridge,
+        totalW: d.total_width, wrapDeg: entry.angles_deg?.wrap ?? 5,
+        bridgeBottomMM: anchor ? anchor.position.y * 1000 : d.lens_height * 0.3 };
+      rec = { root, slots, temples, entry, geom };
       this.cache.set(entry.id, rec);
     }
     if (this.current) this.mount.remove(this.current.root);
@@ -287,7 +298,14 @@ export class TryOnRenderer {
     this.pivot.position.copy(mid);
     this.pivot.quaternion.copy(q);
     this.pivot.scale.setScalar(pxPerM);
-    this.mount.position.set(0, this.fit.offsetY / 1000, this.fit.offsetZ / 1000);
+    // automatic seating on the nose/cheeks, then the user's fine-tune offsets
+    let auto = null;
+    if (this.current) {
+      auto = computeAutoFit(P, mid, q, mmPerPx, { ...this.current.geom, tiltDeg: this.fit.tilt });
+      auto.oy = this.fOy.filter(auto.oy, t);
+      auto.oz = this.fOz.filter(auto.oz, t);
+      this.mount.position.set(0, (auto.oy + this.fit.offsetY) / 1000, (auto.oz + this.fit.offsetZ) / 1000);
+    }
     this.mount.rotation.x = THREE.MathUtils.degToRad(this.fit.tilt);
 
     // head volume behind the face hides temples where they pass behind the head
@@ -314,7 +332,7 @@ export class TryOnRenderer {
     this.light.position.set(mid.x + 0.15 * this.W, mid.y + 0.9 * this.H, mid.z + 2500);
     this.light.target.position.copy(mid);
 
-    this.lastPose = { ...pose, mmPerPxSmoothed: mmPerPx, quatSmoothed: q.clone(),
+    this.lastPose = { ...pose, mmPerPxSmoothed: mmPerPx, quatSmoothed: q.clone(), auto,
       calibrated: this.metrics.calibrated,
       faceWidthMM: this.metrics.faceWidthMM.value, pdMM: this.metrics.pdMM.value };
     return this.lastPose;

@@ -168,7 +168,8 @@ function hud(pose, res) {
   el.innerHTML = pose
     ? `${fps.v.toFixed(0)} fps · ${res?.landmarks.length ?? 0} landmarks<br>
        yaw ${pose.yaw.toFixed(0)}° · pitch ${pose.pitch.toFixed(0)}° · roll ${pose.roll.toFixed(0)}°<br>
-       ${pose.calibrated ? "scale calibrated" : "calibrating scale..."} · ${(1 / pose.mmPerPxSmoothed).toFixed(2)} px/mm`
+       ${pose.calibrated ? "scale calibrated" : "calibrating scale..."} · ${(1 / pose.mmPerPxSmoothed).toFixed(2)} px/mm<br>
+       auto-fit: ${pose.auto ? `${pose.auto.oz.toFixed(1)} mm from eyes (set by ${pose.auto.limit})` : "-"}`
     : `${fps.v.toFixed(0)} fps · no face`;
 }
 
@@ -205,7 +206,7 @@ function renderPhoto() {
   // static image: run the update a few times so filters settle on the exact pose
   tryon.resetTracking();
   let pose = null;
-  for (let i = 0; i < 40; i++) pose = tryon.update(photoResult, i * 33);
+  for (let i = 0; i < 150; i++) pose = tryon.update(photoResult, i * 33);
   tryon.render();
   store.set({ pose });
 }

@@ -119,9 +119,9 @@ function customizationHTML(s, m) {
     <div class="field"><label>Lens</label><div class="chips">
       ${Object.keys(s.finishes.lenses).map((k) => `<button data-act="lens" data-val="${k}" class="chip ${k === s.lens ? "on" : ""}">${LABEL(k)}</button>`).join("")}
     </div></div>
-    <details class="field"><summary>Adjust fit on face</summary>
-      ${slider("offsetY", "Height", -6, 4, 0.1, s.fit.offsetY, "mm")}
-      ${slider("offsetZ", "Distance from eyes", 5, 18, 0.1, s.fit.offsetZ, "mm")}
+    <details class="field"><summary>Fine-tune fit (optional - placement is automatic)</summary>
+      ${slider("offsetY", "Height", -5, 5, 0.1, s.fit.offsetY, "mm")}
+      ${slider("offsetZ", "Distance from face", -4, 6, 0.1, s.fit.offsetZ, "mm")}
       ${slider("tilt", "Tilt", 0, 16, 0.5, s.fit.tilt, "°")}
       ${slider("scale", "Size correction", 0.9, 1.1, 0.005, s.fit.scale, "×")}
       <button class="chip" data-act="resetFit">Reset</button>
