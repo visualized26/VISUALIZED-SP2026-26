@@ -7,6 +7,7 @@ import { createStore, local } from "./core/store.js";
 import { mountCatalog, mountTools } from "./ui/panels.js";
 import { saveSet, dataUrlToBlob } from "./core/gallery.js";
 import { openGallery, refreshGalleryCount } from "./ui/gallery.js";
+import { recommend } from "./core/recommend.js";
 
 const $ = (s) => document.querySelector(s);
 const video = $("#video");
@@ -15,7 +16,8 @@ const canvas = $("#view");
 const store = createStore({
   models: [], finishes: { finishes: {}, lenses: {} },
   category: "all", query: "", modelId: null, size: "M", finish: null, lens: "clear",
-  fit: { ...DEFAULT_FIT }, openTool: "custom", pose: null, recommended: [],
+  fit: { ...DEFAULT_FIT }, openTool: "custom", pose: null,
+  faceShape: null, recs: [], recommended: [], // kept after the camera stops
   favorites: local.read("favorites", []), source: "none", // none | camera | photo
 });
 
@@ -80,6 +82,21 @@ const actions = {
   setFit(key, value) {
     store.set((s) => ({ fit: { ...s.fit, [key]: value } }));
     tryon.fit[key] = value;
+    if (store.get().source === "photo") renderPhoto();
+  },
+  async tryRecommendation(id, size) {
+    if (store.get().modelId !== id) await actions.selectModel(id);
+    if (size && store.get().size !== size && store.get().models.find((m) => m.id === id)?.sizes[size]) {
+      await actions.selectSize(size);
+    }
+  },
+  showMatches() {
+    store.set({ category: "match", query: "" });
+    document.querySelector("#search").value = "";
+  },
+  rescanShape() {
+    tryon.faceShape.reset();
+    store.set({ faceShape: null, recs: [], recommended: [], category: store.get().category === "match" ? "all" : store.get().category });
     if (store.get().source === "photo") renderPhoto();
   },
   resetFit() {
@@ -160,7 +177,7 @@ function tick(now) {
   }
   if (now - lastPoseUpdate > 250) {
     lastPoseUpdate = now;
-    store.set({ pose });
+    store.set({ pose, ...analysis(pose) });
     if (showHud) hud(pose, res);
   }
 }
@@ -216,7 +233,15 @@ function renderPhoto() {
   let pose = null;
   for (let i = 0; i < 150; i++) pose = tryon.update(photoResult, i * 33);
   tryon.render();
-  store.set({ pose });
+  store.set({ pose, ...analysis(pose) });
+}
+
+// face shape + recommendations (only replaced when a new estimate exists)
+function analysis(pose) {
+  const fs = pose?.faceShape;
+  if (!fs) return {};
+  const recs = recommend(store.get().models, fs, pose.calibrated ? pose.faceWidthMM : null);
+  return { faceShape: fs, recs, recommended: recs.map((r) => r.id) };
 }
 
 // ------------------------------------------------------------------ favorites / angles

@@ -26,9 +26,12 @@ export async function loadCatalog() {
   return { models: [...models.values()], finishes: fin };
 }
 
-export function filterModels(models, { category = "all", query = "" } = {}) {
+export function filterModels(models, { category = "all", query = "", recommended = [] } = {}) {
   const q = query.trim().toLowerCase();
-  return models.filter((m) =>
-    (category === "all" || m.style === category) &&
+  const list = models.filter((m) =>
+    (category === "all" || m.style === category || (category === "match" && recommended.includes(m.id))) &&
     (!q || `${m.name} ${m.style} ${m.construction}`.toLowerCase().includes(q)));
+  // matches are shown best first
+  if (category === "match") list.sort((x, y) => recommended.indexOf(x.id) - recommended.indexOf(y.id));
+  return list;
 }

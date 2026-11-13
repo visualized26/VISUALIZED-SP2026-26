@@ -1,5 +1,7 @@
 // UI panels (left catalog + right tools). Pure DOM, driven by the store.
 import { CATEGORIES, filterModels } from "../core/catalog.js";
+import { SHAPES } from "../core/faceShape.js";
+import { ADVICE } from "../core/recommend.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -8,7 +10,6 @@ const LABEL = (k) => k.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase(
 // ------------------------------------------------------------------ left panel
 export function mountCatalog(store, actions) {
   const cats = $("#categories");
-  cats.innerHTML = CATEGORIES.map(([k, l]) => `<button class="cat" data-cat="${k}">${l}</button>`).join("");
   cats.addEventListener("click", (e) => {
     const b = e.target.closest("[data-cat]");
     if (b) store.set({ category: b.dataset.cat });
@@ -19,8 +20,20 @@ export function mountCatalog(store, actions) {
     if (b) actions.selectModel(b.dataset.model);
   });
 
+  let lastCats = "", lastGrid = "";
   const render = (s) => {
-    cats.querySelectorAll(".cat").forEach((b) => b.classList.toggle("active", b.dataset.cat === s.category));
+    // a "Matches" category appears once there are recommendations
+    const catList = s.recommended.length ? [CATEGORIES[0], ["match", "✦ Matches"], ...CATEGORIES.slice(1)] : CATEGORIES;
+    const catKey = JSON.stringify([catList.length, s.category]);
+    if (catKey !== lastCats) {
+      lastCats = catKey;
+      cats.innerHTML = catList.map(([k, l]) =>
+        `<button class="cat ${k === "match" ? "cat-match" : ""} ${k === s.category ? "active" : ""}" data-cat="${k}">${l}</button>`).join("");
+    }
+    // redraw the grid only when what it shows changes (not on every pose update)
+    const gridKey = JSON.stringify([s.models.length, s.category, s.query, s.modelId, s.favorites, s.recommended]);
+    if (gridKey === lastGrid) return;
+    lastGrid = gridKey;
     const list = filterModels(s.models, s);
     const rec = new Set(s.recommended || []);
     $("#frameGrid").innerHTML = list.length
@@ -74,13 +87,16 @@ export function mountTools(store, actions) {
     if (act === "lens") actions.selectLens(val);
     if (act === "resetFit") actions.resetFit();
     if (act === "model") actions.selectModel(val);
+    if (act === "tryRec") actions.tryRecommendation(val, a.dataset.size);
+    if (act === "showMatches") actions.showMatches();
+    if (act === "rescan") actions.rescanShape();
   });
   root.addEventListener("input", (e) => {
     const r = e.target.closest("[data-fit]");
     if (r) actions.setFit(r.dataset.fit, parseFloat(r.value));
   });
 
-  let lastKey = "";
+  let lastKey = "", lastShape = "", lastRecs = "";
   const render = (s) => {
     root.querySelectorAll(".tool").forEach((el) => el.classList.toggle("open", el.dataset.tool === s.openTool));
     // customization re-renders only when its inputs change (keeps sliders usable)
@@ -91,8 +107,18 @@ export function mountTools(store, actions) {
       $("#tool-custom").innerHTML = customizationHTML(s, m);
     }
     $("#tool-fit").innerHTML = fitHTML(s, m);
-    $("#tool-shape").innerHTML = `<p class="muted">Face-shape estimation is part of the next build step.</p>`;
-    $("#tool-recs").innerHTML = recsHTML(s);
+    // analysis panels redraw only when their result changes
+    const shapeKey = JSON.stringify([s.faceShape?.shape, Math.round((s.faceShape?.confidence ?? 0) * 100),
+      s.faceShape ? 0 : s.source, s.faceShape ? 0 : Math.min(s.pose?.faceShapeSamples ?? 0, 12)]);
+    if (shapeKey !== lastShape) {
+      lastShape = shapeKey;
+      $("#tool-shape").innerHTML = shapeHTML(s);
+    }
+    const recKey = JSON.stringify([s.recs.map((r) => r.id + r.size), s.modelId, s.size, !!s.faceShape]);
+    if (recKey !== lastRecs) {
+      lastRecs = recKey;
+      $("#tool-recs").innerHTML = recsHTML(s);
+    }
   };
   store.subscribe(render);
   render(store.get());
@@ -157,7 +183,66 @@ function fitHTML(s, m) {
   return `<table class="kv">${rows.map(([k, v2]) => `<tr><th>${k}</th><td>${v2}</td></tr>`).join("")}</table>${verdict}`;
 }
 
+const PCT = (p) => `${Math.round(p * 100)}%`;
+const UNCERTAIN = 0.4;
+
+function shapeHTML(s) {
+  const fs = s.faceShape;
+  if (!fs) {
+    const n = Math.min(s.pose?.faceShapeSamples ?? 0, 12);
+    const how = s.source === "none"
+      ? "Start the camera or upload a front-facing photo."
+      : "Look straight at the camera with a neutral expression and your hair away from your face.";
+    return `<p class="muted">${how}</p>
+      ${s.source === "camera" ? `<div class="meter"><i style="width:${(n / 12) * 100}%"></i></div>
+      <p class="muted small">Measuring... ${n}/12 frontal frames</p>` : ""}`;
+  }
+  const top = fs.ranked[0];
+  const unsure = top.p < UNCERTAIN || top.p - fs.ranked[1].p < 0.1;
+  const f = fs.features;
+  return `
+    <div class="shape-result">
+      <strong>${LABEL(top.shape)}</strong> <span class="conf">${PCT(top.p)}</span>
+      ${unsure ? `<div class="verdict warn">Uncertain. Your face is between ${LABEL(top.shape)} and ${LABEL(fs.ranked[1].shape)}.</div>` : ""}
+    </div>
+    <div class="bars">
+      ${fs.ranked.map((r) => `<div class="bar"><span>${LABEL(r.shape)}</span><i><b style="width:${r.p * 100}%"></b></i><em>${PCT(r.p)}</em></div>`).join("")}
+    </div>
+    <details class="field"><summary>How this was measured</summary>
+      <table class="kv">
+        <tr><th>Face length ÷ cheekbone width</th><td>${f.length.toFixed(2)}</td></tr>
+        <tr><th>Forehead ÷ cheekbones</th><td>${f.forehead.toFixed(2)}</td></tr>
+        <tr><th>Jaw ÷ cheekbones</th><td>${f.jaw.toFixed(2)}</td></tr>
+        <tr><th>Lower jaw ÷ cheekbones</th><td>${f.chin.toFixed(2)}</td></tr>
+      </table>
+      <p class="muted small">Proportions from ${fs.samples} frontal frames, compared with MediaPipe's average face.</p>
+    </details>
+    <p class="muted small">An estimate from facial landmarks, not yet validated. Hair, lighting and expression
+      can change it. Use it as a starting point.</p>
+    <button class="chip" data-act="rescan">Measure again</button>`;
+}
+
 function recsHTML(s) {
-  return `<p class="muted">Recommendations based on your face shape arrive with the face-shape step.
-    Meanwhile every frame is tagged with the face shapes it usually suits.</p>`;
+  const fs = s.faceShape;
+  if (!fs) {
+    return `<p class="muted">Recommendations appear once your face shape has been estimated
+      (open <b>Face Shape</b> and look at the camera). Every frame stays available to browse.</p>`;
+  }
+  const byId = new Map(s.models.map((m) => [m.id, m]));
+  const items = s.recs.map((r) => {
+    const m = byId.get(r.id);
+    const active = r.id === s.modelId && r.size === s.size;
+    return `<div class="rec ${r.id === s.modelId ? "active" : ""}">
+      <img src="${m.preview}" alt="" loading="lazy" />
+      <div><strong>${esc(m.name)}</strong>
+        <small>${LABEL(m.style)} · suits ${m.faceShapes.filter((x) => SHAPES.includes(x)).map(LABEL).join(", ")}</small>
+        <small>${r.sizeFit != null ? `Size ${r.size} fits your face width` : `Size ${r.size}`}</small></div>
+      <button class="chip ${active ? "on" : ""}" data-act="tryRec" data-val="${r.id}" data-size="${r.size}">${active ? "Wearing" : "Try"}</button>
+    </div>`;
+  }).join("");
+  return `
+    <p><b>For ${LABEL(fs.shape)} faces:</b> ${ADVICE[fs.shape]}</p>
+    <div class="recs">${items || `<p class="muted">No strong matches. Every style is worth a try.</p>`}</div>
+    ${s.recs.length ? `<button class="chip" data-act="showMatches">Show matches in the frame list</button>` : ""}
+    <p class="muted small">Recommendations are starting points. Personal taste matters too.</p>`;
 }

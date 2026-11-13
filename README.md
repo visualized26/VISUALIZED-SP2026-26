@@ -13,10 +13,10 @@ help you choose. Everything runs on your device: camera images are never uploade
 - [x] Real-time try-on: MediaPipe Face Landmarker and Three.js, with smoothing,
   temple occlusion and contact shadows
 - [x] Photo mode, frame/lens customisation, fit adjustments, favourites
-- [ ] Face-shape detection and recommendations
+- [x] Face-shape detection (6 shapes, with confidence) and frame recommendations
 - [ ] Full Smart Fit Analysis
 - [ ] Frame comparison
-- [ ] Multi-angle lookbook
+- [x] Multi-angle capture and Gallery (sets of 3, downloadable lookbook)
 - [ ] RimlessCut
 - [ ] UI design phase
 

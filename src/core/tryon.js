@@ -8,6 +8,7 @@ import { OneEuro, OneEuroVec3, QuatFilter } from "./filters.js";
 import { FaceMetrics, computePose, toPixels } from "./facePose.js";
 import { faceTriangles } from "./tracker.js";
 import { computeAutoFit } from "./autoFit.js";
+import { FaceShapeEstimator } from "./faceShape.js";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -116,6 +117,7 @@ export class TryOnRenderer {
     this.fit = { ...DEFAULT_FIT };
     this.occluderInsetMM = 8; // face occluder sits behind the skin: it hides temples only
     this.metrics = new FaceMetrics();
+    this.faceShape = new FaceShapeEstimator();
     this.fPos = new OneEuroVec3({ minCutoff: 1.2, beta: 0.015 });
     this.fQuat = new QuatFilter({ minCutoff: 1.5, beta: 0.5 });
     this.fScale = new OneEuro({ minCutoff: 0.4, beta: 0.0 });
@@ -168,6 +170,7 @@ export class TryOnRenderer {
     this.fOy.reset();
     this.fOz.reset();
     this.metrics.reset();
+    this.faceShape.reset();
     this.lastPose = null;
   }
 
@@ -288,6 +291,7 @@ export class TryOnRenderer {
     }
     const P = toPixels(result.landmarks, this.W, this.H, this.P);
     const pose = computePose(P, this.metrics);
+    this.faceShape.push(P, pose);
 
     // occluder/shadow face mesh follows raw landmarks
     const pos = this.faceGeo.attributes.position;
@@ -347,7 +351,8 @@ export class TryOnRenderer {
 
     this.lastPose = { ...pose, mmPerPxSmoothed: mmPerPx, quatSmoothed: q.clone(), auto,
       calibrated: this.metrics.calibrated,
-      faceWidthMM: this.metrics.faceWidthMM.value, pdMM: this.metrics.pdMM.value };
+      faceWidthMM: this.metrics.faceWidthMM.value, pdMM: this.metrics.pdMM.value,
+      faceShape: this.faceShape.result(), faceShapeSamples: this.faceShape.samples };
     return this.lastPose;
   }
 
