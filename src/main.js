@@ -5,6 +5,8 @@ import { TryOnRenderer, DEFAULT_FIT } from "./core/tryon.js";
 import { loadCatalog } from "./core/catalog.js";
 import { createStore, local } from "./core/store.js";
 import { mountCatalog, mountTools } from "./ui/panels.js";
+import { saveSet, dataUrlToBlob } from "./core/gallery.js";
+import { openGallery, refreshGalleryCount } from "./ui/gallery.js";
 
 const $ = (s) => document.querySelector(s);
 const video = $("#video");
@@ -217,14 +219,61 @@ function toggleFavorite() {
   store.set({ favorites: next });
 }
 
+// ------------------------------------------------------------------ multi-angle sets
+const shots = { left: null, front: null, right: null };
+const TURN = { left: "Turn your head to your left", right: "Turn your head to your right", front: "Look straight at the camera" };
+let countdownTimer = 0;
+
+function refreshSetUI() {
+  document.querySelectorAll(".angle").forEach((el) => {
+    const url = shots[el.dataset.angle];
+    el.style.backgroundImage = url ? `url(${url})` : "";
+    el.classList.toggle("filled", !!url);
+  });
+  $("#saveSet").disabled = !(shots.left && shots.front && shots.right);
+}
+
 function captureAngle(slot) {
-  if (store.get().source === "none") {
+  const src = store.get().source;
+  if (src === "none") {
     message("Start the camera or use a photo first.");
     return;
   }
-  const url = tryon.snapshot(true);
-  slot.style.backgroundImage = `url(${url})`;
-  slot.classList.add("filled");
+  const angle = slot.dataset.angle;
+  const take = () => {
+    shots[angle] = tryon.snapshot(true);
+    refreshSetUI();
+  };
+  if (src === "photo") return take();
+  clearInterval(countdownTimer);
+  const el = $("#countdown");
+  let n = 3;
+  el.hidden = false;
+  el.innerHTML = `<b>${n}</b><span>${TURN[angle]}</span>`;
+  countdownTimer = setInterval(() => {
+    n -= 1;
+    if (n > 0) {
+      el.querySelector("b").textContent = n;
+      return;
+    }
+    clearInterval(countdownTimer);
+    el.hidden = true;
+    take();
+  }, 1000);
+}
+
+async function saveCurrentSet() {
+  const s = store.get();
+  const m = s.models.find((x) => x.id === s.modelId);
+  const frame = { modelId: m.id, name: m.name, size: s.size, finish: s.finish, lens: s.lens,
+    finishName: s.finish.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) };
+  const blobs = Object.fromEntries(Object.entries(shots).map(([k, v]) => [k, dataUrlToBlob(v)]));
+  const { persistent } = await saveSet({ frame, shots: blobs });
+  shots.left = shots.front = shots.right = null;
+  refreshSetUI();
+  await refreshGalleryCount();
+  message(persistent ? "Set saved to your Gallery." : "Saved for this visit only (browser storage is unavailable).");
+  setTimeout(() => message(""), 2500);
 }
 
 // ------------------------------------------------------------------ boot
@@ -256,8 +305,28 @@ async function boot() {
     const b = e.target.closest(".angle");
     if (b) captureAngle(b);
   });
+  $("#saveSet").addEventListener("click", saveCurrentSet);
+  $("#clearSet").addEventListener("click", () => {
+    shots.left = shots.front = shots.right = null;
+    refreshSetUI();
+  });
+  refreshGalleryCount();
   document.querySelectorAll("[data-nav]").forEach((b) =>
-    b.addEventListener("click", () => message(`${b.textContent.trim()} is coming in the next build step.`)));
+    b.addEventListener("click", () => {
+      if (b.dataset.nav === "gallery") {
+        openGallery({
+          onTryFrame: async (f) => {
+            await actions.selectModel(f.modelId);
+            if (f.size !== store.get().size) await actions.selectSize(f.size);
+            actions.selectFinish(f.finish);
+            actions.selectLens(f.lens);
+          },
+        });
+        return;
+      }
+      message(`${b.textContent.trim()} is coming in the next build step.`);
+      setTimeout(() => message(""), 2500);
+    }));
   window.addEventListener("resize", () => tryon.resize());
 
   store.subscribe((s, prev) => {

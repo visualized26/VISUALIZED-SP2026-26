@@ -13,6 +13,7 @@
       <nav class="topnav">
         <button data-nav="compare">Compare <span class="count" id="compareCount"></span></button>
         <button data-nav="favorites">Favorites <span class="count" id="favCount"></span></button>
+        <button data-nav="gallery">Gallery <span class="count" id="galleryCount"></span></button>
         <button data-nav="rimless" disabled title="Planned feature">RimlessCut</button>
       </nav>
       <div class="profile" aria-hidden="true">
@@ -51,6 +52,7 @@
             <small class="privacy">Video and photos are processed on your device and are never uploaded.</small>
           </div>
           <div class="stage-msg" id="stageMsg" hidden></div>
+          <div class="countdown" id="countdown" hidden></div>
           <div class="hud" id="hud" hidden></div>
           <div class="stage-tools" id="stageTools" hidden>
             <button id="stopCam" class="chip">Stop camera</button>
@@ -60,12 +62,16 @@
         </div>
         <div class="angles-head">
           <span>Multi-Angle Try-On</span>
-          <span class="muted">Turn your head, then click a slot to capture</span>
+          <span class="muted" id="angleHint">Click a slot, then turn your head - it captures after 3 s</span>
         </div>
         <div class="angles" id="angles">
           <button class="angle" data-angle="left"><span>Left</span></button>
-          <button class="angle" data-angle="right"><span>Right</span></button>
           <button class="angle" data-angle="front"><span>Front</span></button>
+          <button class="angle" data-angle="right"><span>Right</span></button>
+        </div>
+        <div class="angle-actions">
+          <button id="clearSet" class="chip">Clear</button>
+          <button id="saveSet" class="btn primary small-btn" disabled>Save set to Gallery</button>
         </div>
       </section>
 

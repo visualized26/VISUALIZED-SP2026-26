@@ -24,8 +24,9 @@ export class TryOnRenderer {
       preserveDrawingBuffer: true });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
-    this.renderer.toneMapping = THREE.AgXToneMapping;
-    this.renderer.toneMappingExposure = 1.05;
+    // Neutral keeps black acetate black and colours true (AgX washed them out)
+    this.renderer.toneMapping = THREE.NeutralToneMapping;
+    this.renderer.toneMappingExposure = 1.0;
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -35,15 +36,15 @@ export class TryOnRenderer {
 
     const pmrem = new THREE.PMREMGenerator(this.renderer);
     this.scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-    this.scene.environmentIntensity = 0.9;
+    this.scene.environmentIntensity = 0.55;
 
-    this.light = new THREE.DirectionalLight(0xffffff, 1.6);
+    this.light = new THREE.DirectionalLight(0xffffff, 1.3);
     this.light.castShadow = true;
     this.light.shadow.mapSize.set(1024, 1024);
     this.light.shadow.radius = 6;
     this.light.shadow.bias = -0.0008;
     this.scene.add(this.light, this.light.target);
-    this.scene.add(new THREE.HemisphereLight(0xffffff, 0x404040, 0.4));
+    this.scene.add(new THREE.HemisphereLight(0xffffff, 0x303030, 0.25));
 
     // background (camera image)
     this.bgMat = new THREE.MeshBasicMaterial({ toneMapped: false, depthWrite: false });
@@ -52,12 +53,18 @@ export class TryOnRenderer {
     this.bg.position.z = -3000;
     this.scene.add(this.bg);
 
-    // face mesh: depth-only occluder + shadow catcher
+    // face mesh: depth-only occluder (pushed back so it never cuts the frame front -
+    // it only has to hide the temples) + a shadow catcher sitting on the skin
     this.tris = faceTriangles();
-    this.faceGeo = new THREE.BufferGeometry();
-    this.faceGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(478 * 3), 3));
-    this.faceGeo.setIndex(this.tris);
-    this.faceOccluder = new THREE.Mesh(this.faceGeo,
+    const faceGeometry = () => {
+      const g = new THREE.BufferGeometry();
+      g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(478 * 3), 3));
+      g.setIndex(this.tris);
+      return g;
+    };
+    this.occGeo = faceGeometry();
+    this.faceGeo = faceGeometry();
+    this.faceOccluder = new THREE.Mesh(this.occGeo,
       new THREE.MeshBasicMaterial({ colorWrite: false }));
     this.faceOccluder.renderOrder = -5;
     this.faceShadow = new THREE.Mesh(this.faceGeo,
@@ -76,7 +83,11 @@ export class TryOnRenderer {
     this.headOccluder = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 20),
       new THREE.MeshBasicMaterial({ colorWrite: false }));
     this.headOccluder.renderOrder = -5;
-    this.pivot.add(this.headOccluder);
+    // side-of-head block: hides the temple arms from ~25 mm behind the front onwards
+    this.sideOccluder = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1),
+      new THREE.MeshBasicMaterial({ colorWrite: false }));
+    this.sideOccluder.renderOrder = -5;
+    this.pivot.add(this.headOccluder, this.sideOccluder);
     this.mount = new THREE.Group(); // fit offsets live here
     this.pivot.add(this.mount);
     this.pivot.visible = false;
@@ -91,6 +102,7 @@ export class TryOnRenderer {
     this.current = null;
 
     this.fit = { ...DEFAULT_FIT };
+    this.occluderInsetMM = 16; // how far behind the skin the face occluder sits
     this.metrics = new FaceMetrics();
     this.fPos = new OneEuroVec3({ minCutoff: 1.2, beta: 0.015 });
     this.fQuat = new QuatFilter({ minCutoff: 1.5, beta: 0.5 });
@@ -216,8 +228,8 @@ export class TryOnRenderer {
       return new THREE.MeshPhysicalMaterial({ ...p, color: 0xffffff, map: this._texture(f.texture),
         roughness: 0.26, clearcoat: 1, clearcoatRoughness: 0.05 });
     }
-    return new THREE.MeshPhysicalMaterial({ ...p, color: f.color, clearcoat: f.coat ?? 1,
-      clearcoatRoughness: 0.06 });
+    return new THREE.MeshPhysicalMaterial({ ...p, color: f.color, clearcoat: (f.coat ?? 1) * 0.7,
+      clearcoatRoughness: 0.08, envMapIntensity: 0.7 });
   }
 
   applyFinish(key, finishes) {
@@ -255,9 +267,15 @@ export class TryOnRenderer {
 
     // occluder/shadow face mesh follows raw landmarks
     const pos = this.faceGeo.attributes.position;
-    for (let i = 0; i < 478 && i < P.length; i++) pos.setXYZ(i, P[i].x, P[i].y, P[i].z);
-    pos.needsUpdate = true;
+    const occ = this.occGeo.attributes.position;
+    const back = pose.axes.z.clone().multiplyScalar(-this.occluderInsetMM / pose.mmPerPx);
+    for (let i = 0; i < 478 && i < P.length; i++) {
+      pos.setXYZ(i, P[i].x, P[i].y, P[i].z);
+      occ.setXYZ(i, P[i].x + back.x, P[i].y + back.y, P[i].z + back.z);
+    }
+    pos.needsUpdate = occ.needsUpdate = true;
     this.faceGeo.computeBoundingSphere();
+    this.occGeo.computeBoundingSphere();
     this.faceOccluder.visible = this.faceShadow.visible = true;
 
     const q = this.fQuat.filter(pose.quat, t);
@@ -274,13 +292,16 @@ export class TryOnRenderer {
 
     // head volume behind the face hides temples where they pass behind the head
     const faceW = (this.metrics.faceWidthMM.value ?? pose.faceWidthPx * mmPerPx) / 1000;
-    this.headOccluder.scale.set(faceW * 0.47, 0.125, 0.105);
-    this.headOccluder.position.set(0, 0.01, -0.098);
+    // (sized to the skull: wide as the face, tall enough to cover temples when looking down)
+    this.headOccluder.scale.set(faceW * 0.5, 0.15, 0.1);
+    this.headOccluder.position.set(0, 0.025, -0.105);
+    this.sideOccluder.scale.set(faceW + 0.006, 0.2, 0.18);
+    this.sideOccluder.position.set(0, 0.03, -0.025 - 0.09);
 
     // splay temples so their arms reach the sides of the head
     if (this.current?.temples) {
       const halfFront = (this.current.entry.dims_mm.total_width / 2) / 1000;
-      const halfHead = faceW / 2 + 0.004;
+      const halfHead = faceW / 2 - 0.002; // arms hug the head and vanish behind it
       const a = THREE.MathUtils.clamp(Math.atan2(halfHead - halfFront, 0.1),
         THREE.MathUtils.degToRad(-6), THREE.MathUtils.degToRad(14)) -
         THREE.MathUtils.degToRad(this.current.entry.angles_deg?.splay ?? 2);

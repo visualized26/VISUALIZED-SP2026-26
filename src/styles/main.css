@@ -206,3 +206,37 @@ h3 { font-size: 15px; margin: 18px 0 10px; font-weight: 600; }
   .frame-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
   .stage { min-height: 300px; }
 }
+
+/* ---------------------------------------------------------------- multi-angle sets */
+.angle.filled span { background: rgba(0, 0, 0, 0.5); padding: 1px 6px; border-radius: 6px; }
+.angle-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.small-btn { padding: 7px 14px; font-size: 13px; }
+.btn:disabled { opacity: 0.45; cursor: default; filter: none; }
+.countdown {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 8px; pointer-events: none; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.6);
+}
+.countdown b { font-size: 84px; line-height: 1; }
+.countdown span { font-size: 18px; font-weight: 600; background: rgba(0,0,0,.45); padding: 6px 14px; border-radius: 99px; }
+
+/* ---------------------------------------------------------------- gallery dialog */
+.dialog {
+  width: min(960px, calc(100vw - 32px)); max-height: calc(100vh - 48px); border: 0; border-radius: 16px;
+  background: #141418; color: var(--text); padding: 20px 22px;
+}
+.dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
+.dlg-head { display: flex; justify-content: space-between; align-items: center; }
+.dlg-head h2 { margin: 0; }
+.dialog .chip { background: var(--card-hi); color: var(--text); }
+.chip.danger { color: #fca5a5; }
+.empty { margin-top: 16px; padding: 28px; border: 1px dashed #3f3f46; border-radius: 12px; text-align: center; color: var(--muted); }
+.sets { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+.set { background: var(--card); border-radius: 12px; padding: 12px; }
+.set-shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.set-shots figure { margin: 0; position: relative; }
+.set-shots img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; cursor: zoom-in; display: block; }
+.set-shots figcaption { position: absolute; left: 6px; bottom: 6px; font-size: 12px; background: rgba(0,0,0,.55); padding: 1px 6px; border-radius: 6px; }
+.set-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+.set-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.viewer { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: grid; place-items: center; cursor: zoom-out; }
+.viewer img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
