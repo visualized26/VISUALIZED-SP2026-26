@@ -22,6 +22,7 @@ const store = createStore({
 const camera = new Camera(video);
 const tracker = new FaceTracker();
 const tryon = new TryOnRenderer(canvas);
+tryon.onAsyncChange = () => redrawStill();
 let trackerReady = null;
 let loop = 0;
 let lastPoseUpdate = 0;
@@ -69,10 +70,12 @@ const actions = {
   selectFinish(finish) {
     store.set({ finish });
     tryon.applyFinish(finish, store.get().finishes);
+    redrawStill();
   },
   selectLens(lens) {
     store.set({ lens });
     tryon.applyLens(lens, store.get().finishes);
+    redrawStill();
   },
   setFit(key, value) {
     store.set((s) => ({ fit: { ...s.fit, [key]: value } }));
@@ -199,6 +202,11 @@ async function usePhoto(file) {
     status("Camera off");
     message(`Could not use this photo: ${e.message}`);
   }
+}
+
+// a photo is drawn once (no render loop), so material-only changes need a redraw
+function redrawStill() {
+  if (store.get().source === "photo" && photo) tryon.render();
 }
 
 function renderPhoto() {

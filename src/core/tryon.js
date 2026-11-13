@@ -215,7 +215,8 @@ export class TryOnRenderer {
 
   _texture(path) {
     if (!this.textures.has(path)) {
-      const t = this.texLoader.load(`${BASE}${path}`);
+      // still images are drawn on demand, so tell the app when a texture arrives
+      const t = this.texLoader.load(`${BASE}${path}`, () => this.onAsyncChange?.());
       t.colorSpace = THREE.SRGBColorSpace;
       t.flipY = false;
       t.anisotropy = 8;
