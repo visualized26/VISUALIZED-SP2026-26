@@ -1,0 +1,140 @@
+{
+  "finishes": {
+    "onyx": {
+      "kind": "acetate",
+      "color": "#0c0c0e",
+      "roughness": 0.28,
+      "coat": 1.0
+    },
+    "matte-black": {
+      "kind": "acetate",
+      "color": "#141416",
+      "roughness": 0.62,
+      "coat": 0.0
+    },
+    "navy": {
+      "kind": "acetate",
+      "color": "#1b2536",
+      "roughness": 0.3,
+      "coat": 1.0
+    },
+    "wine": {
+      "kind": "acetate",
+      "color": "#4a1420",
+      "roughness": 0.3,
+      "coat": 1.0
+    },
+    "olive": {
+      "kind": "acetate",
+      "color": "#3c4128",
+      "roughness": 0.32,
+      "coat": 1.0
+    },
+    "ivory": {
+      "kind": "acetate",
+      "color": "#e9e1cf",
+      "roughness": 0.3,
+      "coat": 1.0
+    },
+    "crystal": {
+      "kind": "clear",
+      "color": "#f2f4f5",
+      "roughness": 0.08,
+      "transmission": 0.92
+    },
+    "smoke": {
+      "kind": "clear",
+      "color": "#6b6e73",
+      "roughness": 0.1,
+      "transmission": 0.85
+    },
+    "champagne-clear": {
+      "kind": "clear",
+      "color": "#e8c99a",
+      "roughness": 0.1,
+      "transmission": 0.88
+    },
+    "tortoise": {
+      "kind": "tortoise",
+      "palette": [
+        "#c98a3a",
+        "#8a4d1c",
+        "#4a2410",
+        "#1e0d06"
+      ],
+      "texture": "models/textures/tex_tortoise.jpg"
+    },
+    "blonde-tortoise": {
+      "kind": "tortoise",
+      "palette": [
+        "#e0b36b",
+        "#b57a35",
+        "#7a4718",
+        "#3e1f0a"
+      ],
+      "texture": "models/textures/tex_blonde-tortoise.jpg"
+    },
+    "dark-tortoise": {
+      "kind": "tortoise",
+      "palette": [
+        "#7a4a1e",
+        "#4a2a12",
+        "#24120a",
+        "#0e0806"
+      ],
+      "texture": "models/textures/tex_dark-tortoise.jpg"
+    },
+    "gold": {
+      "kind": "metal",
+      "color": "#e3c07a",
+      "roughness": 0.22
+    },
+    "silver": {
+      "kind": "metal",
+      "color": "#d6d8db",
+      "roughness": 0.18
+    },
+    "gunmetal": {
+      "kind": "metal",
+      "color": "#55585e",
+      "roughness": 0.3
+    },
+    "rose-gold": {
+      "kind": "metal",
+      "color": "#e2a990",
+      "roughness": 0.22
+    },
+    "black-metal": {
+      "kind": "metal",
+      "color": "#1c1c1e",
+      "roughness": 0.4
+    }
+  },
+  "lenses": {
+    "clear": {
+      "color": "#ffffff",
+      "transmission": 1.0,
+      "roughness": 0.02
+    },
+    "blue-shield": {
+      "color": "#eef3ff",
+      "transmission": 1.0,
+      "roughness": 0.02
+    },
+    "grey": {
+      "color": "#3a3d42",
+      "transmission": 0.85,
+      "roughness": 0.03
+    },
+    "green": {
+      "color": "#2f4030",
+      "transmission": 0.85,
+      "roughness": 0.03
+    },
+    "brown": {
+      "color": "#5a3a22",
+      "transmission": 0.85,
+      "roughness": 0.03
+    }
+  }
+}

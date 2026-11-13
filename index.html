@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="VISUALIZED - try on 3D glasses with your webcam, get face-shape recommendations and an estimated fit." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>VISUALIZED</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">VISUALIZED</div>
+      <nav class="topnav">
+        <button data-nav="compare">Compare <span class="count" id="compareCount"></span></button>
+        <button data-nav="favorites">Favorites <span class="count" id="favCount"></span></button>
+        <button data-nav="rimless" disabled title="Planned feature">RimlessCut</button>
+      </nav>
+      <div class="profile" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3.2" fill="currentColor"/><path d="M6 18.5c1.5-2.6 3.6-3.6 6-3.6s4.5 1 6 3.6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- left: frame selection -->
+      <aside class="panel left">
+        <h2>Frames</h2>
+        <input id="search" class="search" type="search" placeholder="Search frames..." autocomplete="off" />
+        <h3>Categories</h3>
+        <div id="categories" class="categories"></div>
+        <h3>Available frames</h3>
+        <div id="frameGrid" class="frame-grid"></div>
+      </aside>
+
+      <!-- center: try-on -->
+      <section class="panel center">
+        <div class="center-head">
+          <h2>Virtual Try-On</h2>
+          <span id="camStatus" class="pill">Camera off</span>
+        </div>
+        <div class="stage" id="stage">
+          <video id="video" playsinline muted></video>
+          <canvas id="view"></canvas>
+          <div class="stage-empty" id="stageEmpty">
+            <svg viewBox="0 0 24 24" width="34" height="34"><rect x="3" y="6" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 6l1.5-2.5h5L16 6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            <strong>Live Camera Preview</strong>
+            <span>Your face and 3D glasses appear here</span>
+            <div class="stage-actions">
+              <button id="startCam" class="btn primary">Start camera</button>
+              <label class="btn">Use a photo<input id="photoInput" type="file" accept="image/*" hidden /></label>
+            </div>
+            <small class="privacy">Video and photos are processed on your device and are never uploaded.</small>
+          </div>
+          <div class="stage-msg" id="stageMsg" hidden></div>
+          <div class="hud" id="hud" hidden></div>
+          <div class="stage-tools" id="stageTools" hidden>
+            <button id="stopCam" class="chip">Stop camera</button>
+            <button id="favToggle" class="chip">♡ Save</button>
+            <button id="hudToggle" class="chip">Info</button>
+          </div>
+        </div>
+        <div class="angles-head">
+          <span>Multi-Angle Try-On</span>
+          <span class="muted">Turn your head, then click a slot to capture</span>
+        </div>
+        <div class="angles" id="angles">
+          <button class="angle" data-angle="left"><span>Left</span></button>
+          <button class="angle" data-angle="right"><span>Right</span></button>
+          <button class="angle" data-angle="front"><span>Front</span></button>
+        </div>
+      </section>
+
+      <!-- right: tools -->
+      <aside class="panel right">
+        <h2>Tools</h2>
+        <div id="tools" class="tools"></div>
+      </aside>
+    </main>
+
+    <dialog id="dialog" class="dialog"></dialog>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

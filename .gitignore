@@ -1,0 +1,27 @@
+# Private project material (report contains participant photos) - never publish
+About/
+
+# Local Python deps for Blender scripts (reinstall with models-src/setup_deps.ps1)
+models-src/.pydeps/
+__pycache__/
+*.blend1
+
+# Node / build
+node_modules/
+dist/
+.vite/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+
+# Blender generator scratch
+models-src/.cache/
+
+# copied from node_modules by scripts/copy-assets.mjs
+public/vendor/
+
+# local tooling
+.claude/

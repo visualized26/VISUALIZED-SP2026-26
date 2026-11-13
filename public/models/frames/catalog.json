@@ -1,0 +1,1616 @@
+{
+  "version": 1,
+  "frames": [
+    {
+      "id": "rowan-s",
+      "model_id": "rowan",
+      "name": "Rowan",
+      "style": "rectangle",
+      "construction": "acetate",
+      "size": "S",
+      "finish": "onyx",
+      "finish_name": "onyx",
+      "lens": "clear",
+      "finishes": [
+        "onyx",
+        "matte-black",
+        "navy",
+        "tortoise",
+        "crystal"
+      ],
+      "dims_mm": {
+        "lens_width": 50,
+        "lens_height": 35.8,
+        "bridge": 17,
+        "temple_length": 140,
+        "total_width": 129.0,
+        "frame_pd": 67
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart"
+      ],
+      "triangles": 57860,
+      "model": "models/frames/rowan-s.glb",
+      "preview": "models/previews/rowan.png",
+      "bytes": 166428
+    },
+    {
+      "id": "rowan-m",
+      "model_id": "rowan",
+      "name": "Rowan",
+      "style": "rectangle",
+      "construction": "acetate",
+      "size": "M",
+      "finish": "onyx",
+      "finish_name": "onyx",
+      "lens": "clear",
+      "finishes": [
+        "onyx",
+        "matte-black",
+        "navy",
+        "tortoise",
+        "crystal"
+      ],
+      "dims_mm": {
+        "lens_width": 53,
+        "lens_height": 38.0,
+        "bridge": 18,
+        "temple_length": 145,
+        "total_width": 136.0,
+        "frame_pd": 71
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart"
+      ],
+      "triangles": 58148,
+      "model": "models/frames/rowan-m.glb",
+      "preview": "models/previews/rowan.png",
+      "bytes": 166920
+    },
+    {
+      "id": "rowan-l",
+      "model_id": "rowan",
+      "name": "Rowan",
+      "style": "rectangle",
+      "construction": "acetate",
+      "size": "L",
+      "finish": "onyx",
+      "finish_name": "onyx",
+      "lens": "clear",
+      "finishes": [
+        "onyx",
+        "matte-black",
+        "navy",
+        "tortoise",
+        "crystal"
+      ],
+      "dims_mm": {
+        "lens_width": 56,
+        "lens_height": 40.2,
+        "bridge": 19,
+        "temple_length": 150,
+        "total_width": 143.0,
+        "frame_pd": 75
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart"
+      ],
+      "triangles": 58340,
+      "model": "models/frames/rowan-l.glb",
+      "preview": "models/previews/rowan.png",
+      "bytes": 167420
+    },
+    {
+      "id": "milo-s",
+      "model_id": "milo",
+      "name": "Milo",
+      "style": "round",
+      "construction": "acetate",
+      "size": "S",
+      "finish": "tortoise",
+      "finish_name": "tortoise",
+      "lens": "clear",
+      "finishes": [
+        "tortoise",
+        "onyx",
+        "blonde-tortoise",
+        "crystal",
+        "olive"
+      ],
+      "dims_mm": {
+        "lens_width": 45,
+        "lens_height": 41.2,
+        "bridge": 20,
+        "temple_length": 140,
+        "total_width": 119.2,
+        "frame_pd": 65
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "heart",
+        "diamond"
+      ],
+      "triangles": 57860,
+      "model": "models/frames/milo-s.glb",
+      "preview": "models/previews/milo.png",
+      "bytes": 238144
+    },
+    {
+      "id": "milo-m",
+      "model_id": "milo",
+      "name": "Milo",
+      "style": "round",
+      "construction": "acetate",
+      "size": "M",
+      "finish": "tortoise",
+      "finish_name": "tortoise",
+      "lens": "clear",
+      "finishes": [
+        "tortoise",
+        "onyx",
+        "blonde-tortoise",
+        "crystal",
+        "olive"
+      ],
+      "dims_mm": {
+        "lens_width": 48,
+        "lens_height": 44.0,
+        "bridge": 21,
+        "temple_length": 145,
+        "total_width": 126.2,
+        "frame_pd": 69
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "heart",
+        "diamond"
+      ],
+      "triangles": 58148,
+      "model": "models/frames/milo-m.glb",
+      "preview": "models/previews/milo.png",
+      "bytes": 239020
+    },
+    {
+      "id": "milo-l",
+      "model_id": "milo",
+      "name": "Milo",
+      "style": "round",
+      "construction": "acetate",
+      "size": "L",
+      "finish": "tortoise",
+      "finish_name": "tortoise",
+      "lens": "clear",
+      "finishes": [
+        "tortoise",
+        "onyx",
+        "blonde-tortoise",
+        "crystal",
+        "olive"
+      ],
+      "dims_mm": {
+        "lens_width": 51,
+        "lens_height": 46.8,
+        "bridge": 22,
+        "temple_length": 150,
+        "total_width": 133.2,
+        "frame_pd": 73
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "heart",
+        "diamond"
+      ],
+      "triangles": 58340,
+      "model": "models/frames/milo-l.glb",
+      "preview": "models/previews/milo.png",
+      "bytes": 239356
+    },
+    {
+      "id": "iris-s",
+      "model_id": "iris",
+      "name": "Iris",
+      "style": "cat-eye",
+      "construction": "acetate",
+      "size": "S",
+      "finish": "wine",
+      "finish_name": "wine",
+      "lens": "clear",
+      "finishes": [
+        "wine",
+        "onyx",
+        "tortoise",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 49,
+        "lens_height": 37.7,
+        "bridge": 17,
+        "temple_length": 135,
+        "total_width": 127.8,
+        "frame_pd": 66
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "square",
+        "diamond",
+        "heart"
+      ],
+      "triangles": 57668,
+      "model": "models/frames/iris-s.glb",
+      "preview": "models/previews/iris.png",
+      "bytes": 168544
+    },
+    {
+      "id": "iris-m",
+      "model_id": "iris",
+      "name": "Iris",
+      "style": "cat-eye",
+      "construction": "acetate",
+      "size": "M",
+      "finish": "wine",
+      "finish_name": "wine",
+      "lens": "clear",
+      "finishes": [
+        "wine",
+        "onyx",
+        "tortoise",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 52,
+        "lens_height": 40.0,
+        "bridge": 18,
+        "temple_length": 140,
+        "total_width": 134.8,
+        "frame_pd": 70
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "square",
+        "diamond",
+        "heart"
+      ],
+      "triangles": 57860,
+      "model": "models/frames/iris-m.glb",
+      "preview": "models/previews/iris.png",
+      "bytes": 169772
+    },
+    {
+      "id": "iris-l",
+      "model_id": "iris",
+      "name": "Iris",
+      "style": "cat-eye",
+      "construction": "acetate",
+      "size": "L",
+      "finish": "wine",
+      "finish_name": "wine",
+      "lens": "clear",
+      "finishes": [
+        "wine",
+        "onyx",
+        "tortoise",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 55,
+        "lens_height": 42.3,
+        "bridge": 19,
+        "temple_length": 145,
+        "total_width": 141.8,
+        "frame_pd": 74
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "square",
+        "diamond",
+        "heart"
+      ],
+      "triangles": 58148,
+      "model": "models/frames/iris-l.glb",
+      "preview": "models/previews/iris.png",
+      "bytes": 170608
+    },
+    {
+      "id": "hugo-s",
+      "model_id": "hugo",
+      "name": "Hugo",
+      "style": "square",
+      "construction": "acetate",
+      "size": "S",
+      "finish": "matte-black",
+      "finish_name": "matte-black",
+      "lens": "clear",
+      "finishes": [
+        "matte-black",
+        "onyx",
+        "dark-tortoise",
+        "smoke"
+      ],
+      "dims_mm": {
+        "lens_width": 48,
+        "lens_height": 42.4,
+        "bridge": 19,
+        "temple_length": 140,
+        "total_width": 129.0,
+        "frame_pd": 67
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "oblong"
+      ],
+      "triangles": 57860,
+      "model": "models/frames/hugo-s.glb",
+      "preview": "models/previews/hugo.png",
+      "bytes": 167232
+    },
+    {
+      "id": "hugo-m",
+      "model_id": "hugo",
+      "name": "Hugo",
+      "style": "square",
+      "construction": "acetate",
+      "size": "M",
+      "finish": "matte-black",
+      "finish_name": "matte-black",
+      "lens": "clear",
+      "finishes": [
+        "matte-black",
+        "onyx",
+        "dark-tortoise",
+        "smoke"
+      ],
+      "dims_mm": {
+        "lens_width": 51,
+        "lens_height": 45.0,
+        "bridge": 20,
+        "temple_length": 145,
+        "total_width": 136.0,
+        "frame_pd": 71
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "oblong"
+      ],
+      "triangles": 58148,
+      "model": "models/frames/hugo-m.glb",
+      "preview": "models/previews/hugo.png",
+      "bytes": 167452
+    },
+    {
+      "id": "hugo-l",
+      "model_id": "hugo",
+      "name": "Hugo",
+      "style": "square",
+      "construction": "acetate",
+      "size": "L",
+      "finish": "matte-black",
+      "finish_name": "matte-black",
+      "lens": "clear",
+      "finishes": [
+        "matte-black",
+        "onyx",
+        "dark-tortoise",
+        "smoke"
+      ],
+      "dims_mm": {
+        "lens_width": 54,
+        "lens_height": 47.6,
+        "bridge": 21,
+        "temple_length": 150,
+        "total_width": 143.0,
+        "frame_pd": 75
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "oblong"
+      ],
+      "triangles": 58340,
+      "model": "models/frames/hugo-l.glb",
+      "preview": "models/previews/hugo.png",
+      "bytes": 167472
+    },
+    {
+      "id": "nora-s",
+      "model_id": "nora",
+      "name": "Nora",
+      "style": "oval",
+      "construction": "acetate",
+      "size": "S",
+      "finish": "blonde-tortoise",
+      "finish_name": "blonde-tortoise",
+      "lens": "clear",
+      "finishes": [
+        "blonde-tortoise",
+        "champagne-clear",
+        "navy",
+        "crystal"
+      ],
+      "dims_mm": {
+        "lens_width": 48,
+        "lens_height": 34.8,
+        "bridge": 18,
+        "temple_length": 140,
+        "total_width": 122.7,
+        "frame_pd": 66
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "square",
+        "heart",
+        "diamond",
+        "oval"
+      ],
+      "triangles": 57860,
+      "model": "models/frames/nora-s.glb",
+      "preview": "models/previews/nora.png",
+      "bytes": 250376
+    },
+    {
+      "id": "nora-m",
+      "model_id": "nora",
+      "name": "Nora",
+      "style": "oval",
+      "construction": "acetate",
+      "size": "M",
+      "finish": "blonde-tortoise",
+      "finish_name": "blonde-tortoise",
+      "lens": "clear",
+      "finishes": [
+        "blonde-tortoise",
+        "champagne-clear",
+        "navy",
+        "crystal"
+      ],
+      "dims_mm": {
+        "lens_width": 51,
+        "lens_height": 37.0,
+        "bridge": 19,
+        "temple_length": 145,
+        "total_width": 129.7,
+        "frame_pd": 70
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "square",
+        "heart",
+        "diamond",
+        "oval"
+      ],
+      "triangles": 58148,
+      "model": "models/frames/nora-m.glb",
+      "preview": "models/previews/nora.png",
+      "bytes": 250852
+    },
+    {
+      "id": "nora-l",
+      "model_id": "nora",
+      "name": "Nora",
+      "style": "oval",
+      "construction": "acetate",
+      "size": "L",
+      "finish": "blonde-tortoise",
+      "finish_name": "blonde-tortoise",
+      "lens": "clear",
+      "finishes": [
+        "blonde-tortoise",
+        "champagne-clear",
+        "navy",
+        "crystal"
+      ],
+      "dims_mm": {
+        "lens_width": 54,
+        "lens_height": 39.2,
+        "bridge": 20,
+        "temple_length": 150,
+        "total_width": 136.7,
+        "frame_pd": 74
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "square",
+        "heart",
+        "diamond",
+        "oval"
+      ],
+      "triangles": 58340,
+      "model": "models/frames/nora-l.glb",
+      "preview": "models/previews/nora.png",
+      "bytes": 251344
+    },
+    {
+      "id": "theo-s",
+      "model_id": "theo",
+      "name": "Theo",
+      "style": "round",
+      "construction": "acetate",
+      "size": "S",
+      "finish": "olive",
+      "finish_name": "olive",
+      "lens": "clear",
+      "finishes": [
+        "olive",
+        "tortoise",
+        "onyx",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 46,
+        "lens_height": 39.4,
+        "bridge": 20,
+        "temple_length": 140,
+        "total_width": 121.6,
+        "frame_pd": 66
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "oblong"
+      ],
+      "triangles": 57860,
+      "model": "models/frames/theo-s.glb",
+      "preview": "models/previews/theo.png",
+      "bytes": 167176
+    },
+    {
+      "id": "theo-m",
+      "model_id": "theo",
+      "name": "Theo",
+      "style": "round",
+      "construction": "acetate",
+      "size": "M",
+      "finish": "olive",
+      "finish_name": "olive",
+      "lens": "clear",
+      "finishes": [
+        "olive",
+        "tortoise",
+        "onyx",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 49,
+        "lens_height": 42.0,
+        "bridge": 21,
+        "temple_length": 145,
+        "total_width": 128.6,
+        "frame_pd": 70
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "oblong"
+      ],
+      "triangles": 58148,
+      "model": "models/frames/theo-m.glb",
+      "preview": "models/previews/theo.png",
+      "bytes": 168456
+    },
+    {
+      "id": "theo-l",
+      "model_id": "theo",
+      "name": "Theo",
+      "style": "round",
+      "construction": "acetate",
+      "size": "L",
+      "finish": "olive",
+      "finish_name": "olive",
+      "lens": "clear",
+      "finishes": [
+        "olive",
+        "tortoise",
+        "onyx",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 52,
+        "lens_height": 44.6,
+        "bridge": 22,
+        "temple_length": 150,
+        "total_width": 135.6,
+        "frame_pd": 74
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "oblong"
+      ],
+      "triangles": 58340,
+      "model": "models/frames/theo-l.glb",
+      "preview": "models/previews/theo.png",
+      "bytes": 168900
+    },
+    {
+      "id": "luna-s",
+      "model_id": "luna",
+      "name": "Luna",
+      "style": "square",
+      "construction": "acetate",
+      "size": "S",
+      "finish": "dark-tortoise",
+      "finish_name": "dark-tortoise",
+      "lens": "grey",
+      "finishes": [
+        "dark-tortoise",
+        "onyx",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 52,
+        "lens_height": 45.4,
+        "bridge": 18,
+        "temple_length": 140,
+        "total_width": 136.0,
+        "frame_pd": 70
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "oval",
+        "oblong",
+        "heart"
+      ],
+      "triangles": 57860,
+      "model": "models/frames/luna-s.glb",
+      "preview": "models/previews/luna.png",
+      "bytes": 216052
+    },
+    {
+      "id": "luna-m",
+      "model_id": "luna",
+      "name": "Luna",
+      "style": "square",
+      "construction": "acetate",
+      "size": "M",
+      "finish": "dark-tortoise",
+      "finish_name": "dark-tortoise",
+      "lens": "grey",
+      "finishes": [
+        "dark-tortoise",
+        "onyx",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 55,
+        "lens_height": 48.0,
+        "bridge": 19,
+        "temple_length": 145,
+        "total_width": 143.0,
+        "frame_pd": 74
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "oval",
+        "oblong",
+        "heart"
+      ],
+      "triangles": 58148,
+      "model": "models/frames/luna-m.glb",
+      "preview": "models/previews/luna.png",
+      "bytes": 216656
+    },
+    {
+      "id": "luna-l",
+      "model_id": "luna",
+      "name": "Luna",
+      "style": "square",
+      "construction": "acetate",
+      "size": "L",
+      "finish": "dark-tortoise",
+      "finish_name": "dark-tortoise",
+      "lens": "grey",
+      "finishes": [
+        "dark-tortoise",
+        "onyx",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 58,
+        "lens_height": 50.6,
+        "bridge": 20,
+        "temple_length": 150,
+        "total_width": 150.0,
+        "frame_pd": 78
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "oval",
+        "oblong",
+        "heart"
+      ],
+      "triangles": 58340,
+      "model": "models/frames/luna-l.glb",
+      "preview": "models/previews/luna.png",
+      "bytes": 217148
+    },
+    {
+      "id": "sky-s",
+      "model_id": "sky",
+      "name": "Sky",
+      "style": "aviator",
+      "construction": "metal",
+      "size": "S",
+      "finish": "gold",
+      "finish_name": "gold",
+      "lens": "green",
+      "finishes": [
+        "gold",
+        "silver",
+        "gunmetal",
+        "black-metal"
+      ],
+      "dims_mm": {
+        "lens_width": 53,
+        "lens_height": 44.5,
+        "bridge": 14,
+        "temple_length": 135,
+        "total_width": 130.1,
+        "frame_pd": 67
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 6
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "heart",
+        "oblong"
+      ],
+      "triangles": 42008,
+      "model": "models/frames/sky-s.glb",
+      "preview": "models/previews/sky.png",
+      "bytes": 176840
+    },
+    {
+      "id": "sky-m",
+      "model_id": "sky",
+      "name": "Sky",
+      "style": "aviator",
+      "construction": "metal",
+      "size": "M",
+      "finish": "gold",
+      "finish_name": "gold",
+      "lens": "green",
+      "finishes": [
+        "gold",
+        "silver",
+        "gunmetal",
+        "black-metal"
+      ],
+      "dims_mm": {
+        "lens_width": 56,
+        "lens_height": 47.0,
+        "bridge": 15,
+        "temple_length": 140,
+        "total_width": 137.1,
+        "frame_pd": 71
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 6
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "heart",
+        "oblong"
+      ],
+      "triangles": 42264,
+      "model": "models/frames/sky-m.glb",
+      "preview": "models/previews/sky.png",
+      "bytes": 177372
+    },
+    {
+      "id": "sky-l",
+      "model_id": "sky",
+      "name": "Sky",
+      "style": "aviator",
+      "construction": "metal",
+      "size": "L",
+      "finish": "gold",
+      "finish_name": "gold",
+      "lens": "green",
+      "finishes": [
+        "gold",
+        "silver",
+        "gunmetal",
+        "black-metal"
+      ],
+      "dims_mm": {
+        "lens_width": 59,
+        "lens_height": 49.5,
+        "bridge": 16,
+        "temple_length": 145,
+        "total_width": 144.1,
+        "frame_pd": 75
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 6
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "heart",
+        "oblong"
+      ],
+      "triangles": 42456,
+      "model": "models/frames/sky-l.glb",
+      "preview": "models/previews/sky.png",
+      "bytes": 177320
+    },
+    {
+      "id": "ezra-s",
+      "model_id": "ezra",
+      "name": "Ezra",
+      "style": "round",
+      "construction": "metal",
+      "size": "S",
+      "finish": "silver",
+      "finish_name": "silver",
+      "lens": "clear",
+      "finishes": [
+        "silver",
+        "gold",
+        "rose-gold",
+        "black-metal"
+      ],
+      "dims_mm": {
+        "lens_width": 44,
+        "lens_height": 42.1,
+        "bridge": 19,
+        "temple_length": 140,
+        "total_width": 117.1,
+        "frame_pd": 63
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 3
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "diamond"
+      ],
+      "triangles": 41668,
+      "model": "models/frames/ezra-s.glb",
+      "preview": "models/previews/ezra.png",
+      "bytes": 173724
+    },
+    {
+      "id": "ezra-m",
+      "model_id": "ezra",
+      "name": "Ezra",
+      "style": "round",
+      "construction": "metal",
+      "size": "M",
+      "finish": "silver",
+      "finish_name": "silver",
+      "lens": "clear",
+      "finishes": [
+        "silver",
+        "gold",
+        "rose-gold",
+        "black-metal"
+      ],
+      "dims_mm": {
+        "lens_width": 47,
+        "lens_height": 45.0,
+        "bridge": 20,
+        "temple_length": 145,
+        "total_width": 124.1,
+        "frame_pd": 67
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 3
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "diamond"
+      ],
+      "triangles": 41860,
+      "model": "models/frames/ezra-m.glb",
+      "preview": "models/previews/ezra.png",
+      "bytes": 173584
+    },
+    {
+      "id": "ezra-l",
+      "model_id": "ezra",
+      "name": "Ezra",
+      "style": "round",
+      "construction": "metal",
+      "size": "L",
+      "finish": "silver",
+      "finish_name": "silver",
+      "lens": "clear",
+      "finishes": [
+        "silver",
+        "gold",
+        "rose-gold",
+        "black-metal"
+      ],
+      "dims_mm": {
+        "lens_width": 50,
+        "lens_height": 47.9,
+        "bridge": 21,
+        "temple_length": 150,
+        "total_width": 131.1,
+        "frame_pd": 71
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 3
+      },
+      "face_shapes": [
+        "square",
+        "oval",
+        "diamond"
+      ],
+      "triangles": 42052,
+      "model": "models/frames/ezra-l.glb",
+      "preview": "models/previews/ezra.png",
+      "bytes": 173664
+    },
+    {
+      "id": "vera-s",
+      "model_id": "vera",
+      "name": "Vera",
+      "style": "geometric",
+      "construction": "metal",
+      "size": "S",
+      "finish": "rose-gold",
+      "finish_name": "rose-gold",
+      "lens": "clear",
+      "finishes": [
+        "rose-gold",
+        "gold",
+        "silver",
+        "gunmetal"
+      ],
+      "dims_mm": {
+        "lens_width": 47,
+        "lens_height": 41.4,
+        "bridge": 18,
+        "temple_length": 140,
+        "total_width": 122.2,
+        "frame_pd": 65
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 3
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart"
+      ],
+      "triangles": 41668,
+      "model": "models/frames/vera-s.glb",
+      "preview": "models/previews/vera.png",
+      "bytes": 170352
+    },
+    {
+      "id": "vera-m",
+      "model_id": "vera",
+      "name": "Vera",
+      "style": "geometric",
+      "construction": "metal",
+      "size": "M",
+      "finish": "rose-gold",
+      "finish_name": "rose-gold",
+      "lens": "clear",
+      "finishes": [
+        "rose-gold",
+        "gold",
+        "silver",
+        "gunmetal"
+      ],
+      "dims_mm": {
+        "lens_width": 50,
+        "lens_height": 44.0,
+        "bridge": 19,
+        "temple_length": 145,
+        "total_width": 129.2,
+        "frame_pd": 69
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 3
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart"
+      ],
+      "triangles": 41860,
+      "model": "models/frames/vera-m.glb",
+      "preview": "models/previews/vera.png",
+      "bytes": 170588
+    },
+    {
+      "id": "vera-l",
+      "model_id": "vera",
+      "name": "Vera",
+      "style": "geometric",
+      "construction": "metal",
+      "size": "L",
+      "finish": "rose-gold",
+      "finish_name": "rose-gold",
+      "lens": "clear",
+      "finishes": [
+        "rose-gold",
+        "gold",
+        "silver",
+        "gunmetal"
+      ],
+      "dims_mm": {
+        "lens_width": 53,
+        "lens_height": 46.6,
+        "bridge": 20,
+        "temple_length": 150,
+        "total_width": 136.2,
+        "frame_pd": 73
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 3
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart"
+      ],
+      "triangles": 42052,
+      "model": "models/frames/vera-l.glb",
+      "preview": "models/previews/vera.png",
+      "bytes": 170440
+    },
+    {
+      "id": "finn-s",
+      "model_id": "finn",
+      "name": "Finn",
+      "style": "rectangle",
+      "construction": "metal",
+      "size": "S",
+      "finish": "gunmetal",
+      "finish_name": "gunmetal",
+      "lens": "clear",
+      "finishes": [
+        "gunmetal",
+        "silver",
+        "black-metal",
+        "gold"
+      ],
+      "dims_mm": {
+        "lens_width": 51,
+        "lens_height": 34.0,
+        "bridge": 17,
+        "temple_length": 140,
+        "total_width": 129.2,
+        "frame_pd": 68
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 4
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart"
+      ],
+      "triangles": 41668,
+      "model": "models/frames/finn-s.glb",
+      "preview": "models/previews/finn.png",
+      "bytes": 173032
+    },
+    {
+      "id": "finn-m",
+      "model_id": "finn",
+      "name": "Finn",
+      "style": "rectangle",
+      "construction": "metal",
+      "size": "M",
+      "finish": "gunmetal",
+      "finish_name": "gunmetal",
+      "lens": "clear",
+      "finishes": [
+        "gunmetal",
+        "silver",
+        "black-metal",
+        "gold"
+      ],
+      "dims_mm": {
+        "lens_width": 54,
+        "lens_height": 36.0,
+        "bridge": 18,
+        "temple_length": 145,
+        "total_width": 136.2,
+        "frame_pd": 72
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 4
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart"
+      ],
+      "triangles": 41860,
+      "model": "models/frames/finn-m.glb",
+      "preview": "models/previews/finn.png",
+      "bytes": 173016
+    },
+    {
+      "id": "finn-l",
+      "model_id": "finn",
+      "name": "Finn",
+      "style": "rectangle",
+      "construction": "metal",
+      "size": "L",
+      "finish": "gunmetal",
+      "finish_name": "gunmetal",
+      "lens": "clear",
+      "finishes": [
+        "gunmetal",
+        "silver",
+        "black-metal",
+        "gold"
+      ],
+      "dims_mm": {
+        "lens_width": 57,
+        "lens_height": 38.0,
+        "bridge": 19,
+        "temple_length": 150,
+        "total_width": 143.2,
+        "frame_pd": 76
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 4
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart"
+      ],
+      "triangles": 42052,
+      "model": "models/frames/finn-l.glb",
+      "preview": "models/previews/finn.png",
+      "bytes": 173108
+    },
+    {
+      "id": "ada-s",
+      "model_id": "ada",
+      "name": "Ada",
+      "style": "oval",
+      "construction": "metal",
+      "size": "S",
+      "finish": "gold",
+      "finish_name": "gold",
+      "lens": "clear",
+      "finishes": [
+        "gold",
+        "rose-gold",
+        "silver"
+      ],
+      "dims_mm": {
+        "lens_width": 47,
+        "lens_height": 35.7,
+        "bridge": 18,
+        "temple_length": 135,
+        "total_width": 122.0,
+        "frame_pd": 65
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 3
+      },
+      "face_shapes": [
+        "square",
+        "heart",
+        "diamond"
+      ],
+      "triangles": 41412,
+      "model": "models/frames/ada-s.glb",
+      "preview": "models/previews/ada.png",
+      "bytes": 172392
+    },
+    {
+      "id": "ada-m",
+      "model_id": "ada",
+      "name": "Ada",
+      "style": "oval",
+      "construction": "metal",
+      "size": "M",
+      "finish": "gold",
+      "finish_name": "gold",
+      "lens": "clear",
+      "finishes": [
+        "gold",
+        "rose-gold",
+        "silver"
+      ],
+      "dims_mm": {
+        "lens_width": 50,
+        "lens_height": 38.0,
+        "bridge": 19,
+        "temple_length": 140,
+        "total_width": 129.0,
+        "frame_pd": 69
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 3
+      },
+      "face_shapes": [
+        "square",
+        "heart",
+        "diamond"
+      ],
+      "triangles": 41668,
+      "model": "models/frames/ada-m.glb",
+      "preview": "models/previews/ada.png",
+      "bytes": 173408
+    },
+    {
+      "id": "ada-l",
+      "model_id": "ada",
+      "name": "Ada",
+      "style": "oval",
+      "construction": "metal",
+      "size": "L",
+      "finish": "gold",
+      "finish_name": "gold",
+      "lens": "clear",
+      "finishes": [
+        "gold",
+        "rose-gold",
+        "silver"
+      ],
+      "dims_mm": {
+        "lens_width": 53,
+        "lens_height": 40.3,
+        "bridge": 20,
+        "temple_length": 145,
+        "total_width": 136.0,
+        "frame_pd": 73
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 3
+      },
+      "face_shapes": [
+        "square",
+        "heart",
+        "diamond"
+      ],
+      "triangles": 41860,
+      "model": "models/frames/ada-l.glb",
+      "preview": "models/previews/ada.png",
+      "bytes": 173352
+    },
+    {
+      "id": "clark-s",
+      "model_id": "clark",
+      "name": "Clark",
+      "style": "browline",
+      "construction": "combo",
+      "size": "S",
+      "finish": "dark-tortoise",
+      "finish_name": "dark-tortoise",
+      "lens": "clear",
+      "finishes": [
+        "dark-tortoise",
+        "onyx",
+        "tortoise",
+        "navy"
+      ],
+      "dims_mm": {
+        "lens_width": 48,
+        "lens_height": 37.6,
+        "bridge": 19,
+        "temple_length": 140,
+        "total_width": 128.0,
+        "frame_pd": 67
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart",
+        "diamond"
+      ],
+      "triangles": 62972,
+      "model": "models/frames/clark-s.glb",
+      "preview": "models/previews/clark.png",
+      "bytes": 240420
+    },
+    {
+      "id": "clark-m",
+      "model_id": "clark",
+      "name": "Clark",
+      "style": "browline",
+      "construction": "combo",
+      "size": "M",
+      "finish": "dark-tortoise",
+      "finish_name": "dark-tortoise",
+      "lens": "clear",
+      "finishes": [
+        "dark-tortoise",
+        "onyx",
+        "tortoise",
+        "navy"
+      ],
+      "dims_mm": {
+        "lens_width": 51,
+        "lens_height": 40.0,
+        "bridge": 20,
+        "temple_length": 145,
+        "total_width": 135.0,
+        "frame_pd": 71
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart",
+        "diamond"
+      ],
+      "triangles": 63260,
+      "model": "models/frames/clark-m.glb",
+      "preview": "models/previews/clark.png",
+      "bytes": 240884
+    },
+    {
+      "id": "clark-l",
+      "model_id": "clark",
+      "name": "Clark",
+      "style": "browline",
+      "construction": "combo",
+      "size": "L",
+      "finish": "dark-tortoise",
+      "finish_name": "dark-tortoise",
+      "lens": "clear",
+      "finishes": [
+        "dark-tortoise",
+        "onyx",
+        "tortoise",
+        "navy"
+      ],
+      "dims_mm": {
+        "lens_width": 54,
+        "lens_height": 42.4,
+        "bridge": 21,
+        "temple_length": 150,
+        "total_width": 142.0,
+        "frame_pd": 75
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "oval",
+        "heart",
+        "diamond"
+      ],
+      "triangles": 63452,
+      "model": "models/frames/clark-l.glb",
+      "preview": "models/previews/clark.png",
+      "bytes": 240840
+    },
+    {
+      "id": "mae-s",
+      "model_id": "mae",
+      "name": "Mae",
+      "style": "cat-eye",
+      "construction": "combo",
+      "size": "S",
+      "finish": "wine",
+      "finish_name": "wine",
+      "lens": "clear",
+      "finishes": [
+        "wine",
+        "onyx",
+        "tortoise",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 48,
+        "lens_height": 36.7,
+        "bridge": 17,
+        "temple_length": 135,
+        "total_width": 125.0,
+        "frame_pd": 65
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "square",
+        "diamond"
+      ],
+      "triangles": 62780,
+      "model": "models/frames/mae-s.glb",
+      "preview": "models/previews/mae.png",
+      "bytes": 195132
+    },
+    {
+      "id": "mae-m",
+      "model_id": "mae",
+      "name": "Mae",
+      "style": "cat-eye",
+      "construction": "combo",
+      "size": "M",
+      "finish": "wine",
+      "finish_name": "wine",
+      "lens": "clear",
+      "finishes": [
+        "wine",
+        "onyx",
+        "tortoise",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 51,
+        "lens_height": 39.0,
+        "bridge": 18,
+        "temple_length": 140,
+        "total_width": 132.0,
+        "frame_pd": 69
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "square",
+        "diamond"
+      ],
+      "triangles": 62972,
+      "model": "models/frames/mae-m.glb",
+      "preview": "models/previews/mae.png",
+      "bytes": 194520
+    },
+    {
+      "id": "mae-l",
+      "model_id": "mae",
+      "name": "Mae",
+      "style": "cat-eye",
+      "construction": "combo",
+      "size": "L",
+      "finish": "wine",
+      "finish_name": "wine",
+      "lens": "clear",
+      "finishes": [
+        "wine",
+        "onyx",
+        "tortoise",
+        "ivory"
+      ],
+      "dims_mm": {
+        "lens_width": 54,
+        "lens_height": 41.3,
+        "bridge": 19,
+        "temple_length": 145,
+        "total_width": 139.0,
+        "frame_pd": 73
+      },
+      "angles_deg": {
+        "pantoscopic": 8,
+        "wrap": 5
+      },
+      "face_shapes": [
+        "round",
+        "square",
+        "diamond"
+      ],
+      "triangles": 63260,
+      "model": "models/frames/mae-l.glb",
+      "preview": "models/previews/mae.png",
+      "bytes": 195136
+    }
+  ]
+}

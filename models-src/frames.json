@@ -1,0 +1,140 @@
+{
+  "defaults": {
+    "construction": "acetate",
+    "lens": "clear",
+    "metal": "silver",
+    "sizes": ["S", "M", "L"],
+    "angles": { "pantoscopic": 8, "wrap": 5 },
+    "front": { "depth": 5.0, "rim": 5.0, "edge_round": 1.4, "rivets": true },
+    "temple": { "width": [4.2, 3.0], "height": 4.2, "splay": 2.0, "drop": 36 }
+  },
+  "size_deltas": {
+    "S": { "lens_width": -3, "bridge": -1, "temple_length": -5 },
+    "M": {},
+    "L": { "lens_width": 3, "bridge": 1, "temple_length": 5 }
+  },
+  "frames": [
+    {
+      "id": "rowan", "name": "Rowan", "style": "rectangle",
+      "finish": "onyx", "finishes": ["onyx", "matte-black", "navy", "tortoise", "crystal"],
+      "dims": { "lens_width": 53, "lens_height": 38, "bridge": 18, "temple_length": 145 },
+      "shape": { "n_top": 4.0, "n_bottom": 3.2, "top_tilt": 0.06 },
+      "front": { "rim": 5.0, "rim_top": 6.0 },
+      "face_shapes": ["round", "oval", "heart"]
+    },
+    {
+      "id": "milo", "name": "Milo", "style": "round",
+      "finish": "tortoise", "finishes": ["tortoise", "onyx", "blonde-tortoise", "crystal", "olive"],
+      "dims": { "lens_width": 48, "lens_height": 44, "bridge": 21, "temple_length": 145 },
+      "shape": { "n_top": 2.2, "n_bottom": 2.1 },
+      "front": { "rim": 4.6, "keyhole": true, "bridge_height": 6.0 },
+      "face_shapes": ["square", "oval", "heart", "diamond"]
+    },
+    {
+      "id": "iris", "name": "Iris", "style": "cat-eye",
+      "finish": "wine", "finishes": ["wine", "onyx", "tortoise", "ivory"],
+      "dims": { "lens_width": 52, "lens_height": 40, "bridge": 18, "temple_length": 140 },
+      "shape": { "n_top": 3.0, "n_bottom": 2.2, "upsweep": 0.34, "top_tilt": 0.07 },
+      "front": { "rim": 4.8, "rim_top": 6.4, "hinge_y": 0.7 },
+      "face_shapes": ["round", "square", "diamond", "heart"]
+    },
+    {
+      "id": "hugo", "name": "Hugo", "style": "square",
+      "finish": "matte-black", "finishes": ["matte-black", "onyx", "dark-tortoise", "smoke"],
+      "dims": { "lens_width": 51, "lens_height": 45, "bridge": 20, "temple_length": 145 },
+      "shape": { "n_top": 4.5, "n_bottom": 3.6 },
+      "front": { "rim": 6.0, "rim_top": 7.0, "depth": 6.0, "edge_round": 1.8 },
+      "temple": { "width": [5.0, 3.6], "height": 5.0 },
+      "face_shapes": ["round", "oval", "oblong"]
+    },
+    {
+      "id": "nora", "name": "Nora", "style": "oval",
+      "finish": "blonde-tortoise", "finishes": ["blonde-tortoise", "champagne-clear", "navy", "crystal"],
+      "dims": { "lens_width": 51, "lens_height": 37, "bridge": 19, "temple_length": 145 },
+      "shape": { "n_top": 2.4, "n_bottom": 2.2 },
+      "front": { "rim": 4.2 },
+      "face_shapes": ["square", "heart", "diamond", "oval"]
+    },
+    {
+      "id": "theo", "name": "Theo", "style": "round",
+      "finish": "olive", "finishes": ["olive", "tortoise", "onyx", "ivory"],
+      "dims": { "lens_width": 49, "lens_height": 42, "bridge": 21, "temple_length": 145 },
+      "shape": { "n_top": 3.0, "n_bottom": 2.3, "top_tilt": 0.03 },
+      "front": { "rim": 4.8, "keyhole": true, "bridge_height": 6.5 },
+      "face_shapes": ["square", "oval", "oblong"]
+    },
+    {
+      "id": "luna", "name": "Luna", "style": "square",
+      "finish": "dark-tortoise", "finishes": ["dark-tortoise", "onyx", "ivory"], "lens": "grey",
+      "dims": { "lens_width": 55, "lens_height": 48, "bridge": 19, "temple_length": 145 },
+      "shape": { "n_top": 3.8, "n_bottom": 2.8, "upsweep": 0.18, "top_tilt": 0.05 },
+      "front": { "rim": 6.0, "rim_top": 7.0, "depth": 5.6, "edge_round": 1.8 },
+      "temple": { "width": [5.0, 3.6], "height": 5.4 },
+      "face_shapes": ["oval", "oblong", "heart"]
+    },
+    {
+      "id": "sky", "name": "Sky", "style": "aviator", "construction": "metal",
+      "finish": "gold", "finishes": ["gold", "silver", "gunmetal", "black-metal"],
+      "lens": "green", "metal": "gold",
+      "dims": { "lens_width": 56, "lens_height": 47, "bridge": 15, "temple_length": 140 },
+      "shape": { "n_top": 2.6, "n_bottom": 2.0, "droop": 0.35, "flat_top": 0.35 },
+      "front": { "bridge_type": "double", "bridge_y": 0.42, "top_bar_y": 0.78, "endpiece_y": 0.55 },
+      "angles": { "pantoscopic": 8, "wrap": 6 },
+      "face_shapes": ["square", "oval", "heart", "oblong"]
+    },
+    {
+      "id": "ezra", "name": "Ezra", "style": "round", "construction": "metal",
+      "finish": "silver", "finishes": ["silver", "gold", "rose-gold", "black-metal"],
+      "dims": { "lens_width": 47, "lens_height": 45, "bridge": 20, "temple_length": 145 },
+      "shape": { "n": 2.05 },
+      "front": { "bridge_type": "arch", "bridge_y": 0.35, "bridge_rise": 4.0, "wire": 0.7 },
+      "angles": { "pantoscopic": 8, "wrap": 3 },
+      "face_shapes": ["square", "oval", "diamond"]
+    },
+    {
+      "id": "vera", "name": "Vera", "style": "geometric", "construction": "metal",
+      "finish": "rose-gold", "finishes": ["rose-gold", "gold", "silver", "gunmetal"],
+      "dims": { "lens_width": 50, "lens_height": 44, "bridge": 19, "temple_length": 145 },
+      "shape": { "kind": "polygon", "sides": 6, "rotate": 0, "corner": 0.14 },
+      "front": { "bridge_type": "arch", "bridge_y": 0.32, "bridge_rise": 3.0, "wire": 0.75 },
+      "angles": { "pantoscopic": 8, "wrap": 3 },
+      "face_shapes": ["round", "oval", "heart"]
+    },
+    {
+      "id": "finn", "name": "Finn", "style": "rectangle", "construction": "metal",
+      "finish": "gunmetal", "finishes": ["gunmetal", "silver", "black-metal", "gold"],
+      "dims": { "lens_width": 54, "lens_height": 36, "bridge": 18, "temple_length": 145 },
+      "shape": { "n_top": 4.2, "n_bottom": 3.4, "top_tilt": 0.04 },
+      "front": { "bridge_type": "arch", "bridge_y": 0.25, "bridge_rise": 2.6, "wire": 0.8 },
+      "angles": { "pantoscopic": 8, "wrap": 4 },
+      "face_shapes": ["round", "oval", "heart"]
+    },
+    {
+      "id": "ada", "name": "Ada", "style": "oval", "construction": "metal",
+      "finish": "gold", "finishes": ["gold", "rose-gold", "silver"],
+      "dims": { "lens_width": 50, "lens_height": 38, "bridge": 19, "temple_length": 140 },
+      "shape": { "n_top": 2.3, "n_bottom": 2.1 },
+      "front": { "bridge_type": "arch", "bridge_y": 0.3, "bridge_rise": 3.4, "wire": 0.65 },
+      "angles": { "pantoscopic": 8, "wrap": 3 },
+      "face_shapes": ["square", "heart", "diamond"]
+    },
+    {
+      "id": "clark", "name": "Clark", "style": "browline", "construction": "combo",
+      "finish": "dark-tortoise", "finishes": ["dark-tortoise", "onyx", "tortoise", "navy"],
+      "metal": "silver",
+      "dims": { "lens_width": 51, "lens_height": 40, "bridge": 20, "temple_length": 145 },
+      "shape": { "n_top": 3.0, "n_bottom": 2.4, "top_tilt": 0.05 },
+      "front": { "bridge_type": "arch", "bridge_y": 0.25, "bridge_rise": 3.0, "brow": 6.5 },
+      "face_shapes": ["round", "oval", "heart", "diamond"]
+    },
+    {
+      "id": "mae", "name": "Mae", "style": "cat-eye", "construction": "combo",
+      "finish": "wine", "finishes": ["wine", "onyx", "tortoise", "ivory"],
+      "metal": "gold",
+      "dims": { "lens_width": 51, "lens_height": 39, "bridge": 18, "temple_length": 140 },
+      "shape": { "n_top": 3.0, "n_bottom": 2.2, "upsweep": 0.42, "top_tilt": 0.12 },
+      "front": { "bridge_type": "arch", "bridge_y": 0.25, "bridge_rise": 3.0, "brow": 6.0 },
+      "face_shapes": ["round", "square", "diamond"]
+    }
+  ]
+}

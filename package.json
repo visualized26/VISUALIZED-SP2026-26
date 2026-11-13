@@ -1,0 +1,21 @@
+{
+  "name": "visualized",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "VISUALIZED - intelligent eyewear try-on (Mahidol ICT senior project SP2026-26)",
+  "scripts": {
+    "assets": "node scripts/copy-assets.mjs",
+    "dev": "npm run assets && vite",
+    "build": "npm run assets && vite build",
+    "preview": "vite preview",
+    "models": "\"C:/Program Files/Blender Foundation/Blender 5.3/blender.exe\" --background --factory-startup --python models-src/build_frames.py"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^1.1.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "vite": "^8.3.0"
+  }
+}
